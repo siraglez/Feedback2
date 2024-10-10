@@ -20,7 +20,9 @@ fun PantallaPrincipal(
     novelas: List<Novela>,
     onAgregarClick: () -> Unit,
     onEliminarClick: (Novela) -> Unit,
-    onVerDetallesClick: (Novela) -> Unit
+    onVerDetallesClick: (Novela) -> Unit,
+    onCargarNovelas: () -> Unit,
+    isLoading: Boolean
 ) {
     Scaffold(
         floatingActionButton = {
@@ -54,6 +56,23 @@ fun PantallaPrincipal(
                         }
                     }
                 }
+
+                //Mostrar un botón para cargar novelas desde Firebase
+                item {
+                    Button(
+                        onClick = onCargarNovelas,
+                        modifier = Modifier.padding(16.dp).fillParentMaxWidth()
+                    ) {
+                        Text("Cargar novelas desde base de datos")
+                    }
+                }
+
+                //Indicador de carga
+                if (isLoading) {
+                    item {
+                        CircularProgressIndicator(modifier = Modifier.padding(16.dp))
+                    }
+                }
             }
         }
     }
@@ -69,6 +88,8 @@ fun PreviewPantallaPrincipal() {
         ),
         onAgregarClick = {},
         onEliminarClick = {},
-        onVerDetallesClick = {}
+        onVerDetallesClick = {},
+        onCargarNovelas = {},
+        isLoading = true
     )
 }
