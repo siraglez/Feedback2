@@ -1,0 +1,432 @@
+Index: app/build.gradle.kts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>plugins {\n    alias(libs.plugins.android.application)\n    alias(libs.plugins.kotlin.android)\n}\n\nandroid {\n    namespace = \"com.example.feedback2\"\n    compileSdk = 34\n\n    defaultConfig {\n        applicationId = \"com.example.feedback2\"\n        minSdk = 24\n        targetSdk = 34\n        versionCode = 1\n        versionName = \"1.0\"\n\n        testInstrumentationRunner = \"androidx.test.runner.AndroidJUnitRunner\"\n        vectorDrawables {\n            useSupportLibrary = true\n        }\n    }\n\n    buildTypes {\n        release {\n            isMinifyEnabled = false\n            proguardFiles(\n                getDefaultProguardFile(\"proguard-android-optimize.txt\"),\n                \"proguard-rules.pro\"\n            )\n        }\n    }\n    compileOptions {\n        sourceCompatibility = JavaVersion.VERSION_1_8\n        targetCompatibility = JavaVersion.VERSION_1_8\n    }\n    kotlinOptions {\n        jvmTarget = \"1.8\"\n    }\n    buildFeatures {\n        compose = true\n    }\n    composeOptions {\n        kotlinCompilerExtensionVersion = \"1.5.1\"\n    }\n    packaging {\n        resources {\n            excludes += \"/META-INF/{AL2.0,LGPL2.1}\"\n        }\n    }\n}\n\ndependencies {\n\n    implementation(libs.androidx.core.ktx)\n    implementation(libs.androidx.lifecycle.runtime.ktx)\n    implementation(libs.androidx.activity.compose)\n    implementation(platform(libs.androidx.compose.bom))\n    implementation(libs.androidx.ui)\n    implementation(libs.androidx.ui.graphics)\n    implementation(libs.androidx.ui.tooling.preview)\n    implementation(libs.androidx.material3)\n    testImplementation(libs.junit)\n    androidTestImplementation(libs.androidx.junit)\n    androidTestImplementation(libs.androidx.espresso.core)\n    androidTestImplementation(platform(libs.androidx.compose.bom))\n    androidTestImplementation(libs.androidx.ui.test.junit4)\n    debugImplementation(libs.androidx.ui.tooling)\n    debugImplementation(libs.androidx.ui.test.manifest)\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/build.gradle.kts b/app/build.gradle.kts
+--- a/app/build.gradle.kts	(revision e61c49d3fea70709993e7d7b3d9d3656a52b7944)
++++ b/app/build.gradle.kts	(date 1728580606175)
+@@ -59,6 +59,8 @@
+     implementation(libs.androidx.ui.graphics)
+     implementation(libs.androidx.ui.tooling.preview)
+     implementation(libs.androidx.material3)
++    implementation(libs.androidx.navigation.runtime.ktx)
++    implementation(libs.androidx.navigation.compose)
+     testImplementation(libs.junit)
+     androidTestImplementation(libs.androidx.junit)
+     androidTestImplementation(libs.androidx.espresso.core)
+Index: gradle/libs.versions.toml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>[versions]\nagp = \"8.6.1\"\nkotlin = \"1.9.0\"\ncoreKtx = \"1.13.1\"\njunit = \"4.13.2\"\njunitVersion = \"1.2.1\"\nespressoCore = \"3.6.1\"\nlifecycleRuntimeKtx = \"2.8.6\"\nactivityCompose = \"1.9.2\"\ncomposeBom = \"2024.04.01\"\n\n[libraries]\nandroidx-core-ktx = { group = \"androidx.core\", name = \"core-ktx\", version.ref = \"coreKtx\" }\njunit = { group = \"junit\", name = \"junit\", version.ref = \"junit\" }\nandroidx-junit = { group = \"androidx.test.ext\", name = \"junit\", version.ref = \"junitVersion\" }\nandroidx-espresso-core = { group = \"androidx.test.espresso\", name = \"espresso-core\", version.ref = \"espressoCore\" }\nandroidx-lifecycle-runtime-ktx = { group = \"androidx.lifecycle\", name = \"lifecycle-runtime-ktx\", version.ref = \"lifecycleRuntimeKtx\" }\nandroidx-activity-compose = { group = \"androidx.activity\", name = \"activity-compose\", version.ref = \"activityCompose\" }\nandroidx-compose-bom = { group = \"androidx.compose\", name = \"compose-bom\", version.ref = \"composeBom\" }\nandroidx-ui = { group = \"androidx.compose.ui\", name = \"ui\" }\nandroidx-ui-graphics = { group = \"androidx.compose.ui\", name = \"ui-graphics\" }\nandroidx-ui-tooling = { group = \"androidx.compose.ui\", name = \"ui-tooling\" }\nandroidx-ui-tooling-preview = { group = \"androidx.compose.ui\", name = \"ui-tooling-preview\" }\nandroidx-ui-test-manifest = { group = \"androidx.compose.ui\", name = \"ui-test-manifest\" }\nandroidx-ui-test-junit4 = { group = \"androidx.compose.ui\", name = \"ui-test-junit4\" }\nandroidx-material3 = { group = \"androidx.compose.material3\", name = \"material3\" }\n\n[plugins]\nandroid-application = { id = \"com.android.application\", version.ref = \"agp\" }\nkotlin-android = { id = \"org.jetbrains.kotlin.android\", version.ref = \"kotlin\" }\n\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/gradle/libs.versions.toml b/gradle/libs.versions.toml
+--- a/gradle/libs.versions.toml	(revision e61c49d3fea70709993e7d7b3d9d3656a52b7944)
++++ b/gradle/libs.versions.toml	(date 1728580605949)
+@@ -8,6 +8,8 @@
+ lifecycleRuntimeKtx = "2.8.6"
+ activityCompose = "1.9.2"
+ composeBom = "2024.04.01"
++navigationRuntimeKtx = "2.8.2"
++navigationCompose = "2.8.2"
+ 
+ [libraries]
+ androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+@@ -24,6 +26,8 @@
+ androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
+ androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
+ androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
++androidx-navigation-runtime-ktx = { group = "androidx.navigation", name = "navigation-runtime-ktx", version.ref = "navigationRuntimeKtx" }
++androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
+ 
+ [plugins]
+ android-application = { id = "com.android.application", version.ref = "agp" }
+Index: app/src/main/java/com/example/feedback2/AgregarNovela.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/feedback2/AgregarNovela.kt b/app/src/main/java/com/example/feedback2/AgregarNovela.kt
+new file mode 100644
+--- /dev/null	(date 1728580295780)
++++ b/app/src/main/java/com/example/feedback2/AgregarNovela.kt	(date 1728580295780)
+@@ -0,0 +1,38 @@
++package com.example.feedback2
++
++import androidx.compose.foundation.layout.*
++import androidx.compose.material3.*
++import androidx.compose.runtime.*
++import androidx.compose.ui.Modifier
++import androidx.compose.ui.tooling.preview.Preview
++import androidx.compose.ui.unit.dp
++
++@Composable
++fun AgregarNovela(onAgregarNovela: (Novela) -> Unit) {
++    var titulo by remember { mutableStateOf("") }
++    var autor by remember { mutableStateOf("") }
++    var anio by remember { mutableStateOf("") }
++    var sinopsis by remember { mutableStateOf("") }
++
++    Column(modifier = Modifier.padding(16.dp)) {
++        TextField(value = titulo, onValueChange = { titulo = it }, label = { Text("Título") })
++        TextField(value = autor, onValueChange = { autor = it }, label = { Text("Autor") })
++        TextField(value = anio, onValueChange = { anio = it }, label = { Text("Año de Publicación") })
++        TextField(value = sinopsis, onValueChange = { sinopsis = it }, label = { Text("Sinopsis") })
++
++        Spacer(modifier = Modifier.height(16.dp))
++        Button(onClick = {
++            if (titulo.isNotEmpty() && autor.isNotEmpty() && anio.isNotEmpty() && sinopsis.isNotEmpty()) {
++                onAgregarNovela(Novela(titulo, autor, anio.toInt(), sinopsis))
++            }
++        }) {
++            Text("Agregar Novela")
++        }
++    }
++}
++
++@Preview(showBackground = true)
++@Composable
++fun PreviewAgregarNovela() {
++    AgregarNovela(onAgregarNovela = {})
++}
+Index: app/src/main/java/com/example/feedback2/PantallaPrincipal.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/feedback2/PantallaPrincipal.kt b/app/src/main/java/com/example/feedback2/PantallaPrincipal.kt
+new file mode 100644
+--- /dev/null	(date 1728580295823)
++++ b/app/src/main/java/com/example/feedback2/PantallaPrincipal.kt	(date 1728580295823)
+@@ -0,0 +1,74 @@
++package com.example.feedback2
++
++import androidx.compose.foundation.clickable
++import androidx.compose.foundation.layout.*
++import androidx.compose.foundation.lazy.LazyColumn
++import androidx.compose.foundation.lazy.items
++import androidx.compose.material.icons.Icons
++import androidx.compose.material.icons.filled.Add
++import androidx.compose.material.icons.filled.Delete
++import androidx.compose.material.icons.filled.Star
++import androidx.compose.material3.*
++import androidx.compose.runtime.Composable
++import androidx.compose.ui.Modifier
++import androidx.compose.ui.graphics.Color
++import androidx.compose.ui.tooling.preview.Preview
++import androidx.compose.ui.unit.dp
++
++@Composable
++fun PantallaPrincipal(
++    novelas: List<Novela>,
++    onAgregarClick: () -> Unit,
++    onEliminarClick: (Novela) -> Unit,
++    onVerDetallesClick: (Novela) -> Unit
++) {
++    Scaffold(
++        floatingActionButton = {
++            FloatingActionButton(onClick = onAgregarClick) {
++                Icon(Icons.Default.Add, contentDescription = "Agregar Novela")
++            }
++        }
++    ) { paddingValues ->
++        Box(modifier = Modifier.padding(paddingValues)) {
++            LazyColumn {
++                items(novelas) { novela ->
++                    Row(
++                        modifier = Modifier
++                            .fillMaxWidth()
++                            .clickable { onVerDetallesClick(novela) }
++                            .padding(8.dp)
++                    ) {
++                        Column(modifier = Modifier.weight(1f)) {
++                            Text(text = novela.titulo, style = MaterialTheme.typography.titleLarge)
++                            Text(text = "Autor: ${novela.autor}")
++                        }
++                        if (novela.esFavorita) {
++                            Icon(
++                                Icons.Default.Star,
++                                contentDescription = "Favorita",
++                                tint = Color.Yellow
++                            )
++                        }
++                        IconButton(onClick = { onEliminarClick(novela) }) {
++                            Icon(Icons.Default.Delete, contentDescription = "Eliminar Novela")
++                        }
++                    }
++                }
++            }
++        }
++    }
++}
++
++@Preview(showBackground = true)
++@Composable
++fun PreviewPantallaPrincipal() {
++    PantallaPrincipal(
++        novelas = listOf(
++            Novela("Novela 1", "Autor 1", 2022, "Sinopsis 1"),
++            Novela("Novela 2", "Autor 2", 2021, "Sinopsis 2", esFavorita = true)
++        ),
++        onAgregarClick = {},
++        onEliminarClick = {},
++        onVerDetallesClick = {}
++    )
++}
+Index: app/src/main/java/com/example/feedback2/PantallaResenas.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/feedback2/PantallaResenas.kt b/app/src/main/java/com/example/feedback2/PantallaResenas.kt
+new file mode 100644
+--- /dev/null	(date 1728580295702)
++++ b/app/src/main/java/com/example/feedback2/PantallaResenas.kt	(date 1728580295702)
+@@ -0,0 +1,46 @@
++package com.example.feedback2
++
++import androidx.compose.foundation.clickable
++import androidx.compose.foundation.layout.*
++import androidx.compose.foundation.lazy.LazyColumn
++import androidx.compose.foundation.lazy.items
++import androidx.compose.material3.*
++import androidx.compose.runtime.Composable
++import androidx.compose.ui.Modifier
++import androidx.compose.ui.tooling.preview.Preview
++import androidx.compose.ui.unit.dp
++
++@Composable
++fun PantallaResenas(novelas: List<Novela>, onSeleccionarNovela: (Novela) -> Unit) {
++    // LazyColumn para mostrar la lista de novelas
++    LazyColumn(modifier = Modifier.fillMaxSize()) {
++        // Uso de items para iterar sobre la lista de novelas
++        items(novelas) { novela ->
++            Row(
++                modifier = Modifier
++                    .fillMaxWidth()
++                    .clickable { onSeleccionarNovela(novela) } // Al hacer clic, se selecciona la novela
++                    .padding(8.dp)
++            ) {
++                // Mostrar el título y el autor de cada novela
++                Column(modifier = Modifier.weight(1f)) {
++                    Text(text = novela.titulo, style = MaterialTheme.typography.titleMedium)
++                    Text(text = "Autor: ${novela.autor}")
++                }
++            }
++        }
++    }
++}
++
++@Preview(showBackground = true)
++@Composable
++fun PreviewPantallaResenas() {
++    // Ejemplo de novelas para la vista previa
++    PantallaResenas(
++        novelas = listOf(
++            Novela("Novela 1", "Autor 1", 2022, "Sinopsis 1"),
++            Novela("Novela 2", "Autor 2", 2021, "Sinopsis 2")
++        ),
++        onSeleccionarNovela = {}
++    )
++}
+Index: app/src/main/java/com/example/feedback2/AgregarResena.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/feedback2/AgregarResena.kt b/app/src/main/java/com/example/feedback2/AgregarResena.kt
+new file mode 100644
+--- /dev/null	(date 1728580295756)
++++ b/app/src/main/java/com/example/feedback2/AgregarResena.kt	(date 1728580295756)
+@@ -0,0 +1,74 @@
++package com.example.feedback2
++
++import androidx.compose.foundation.layout.Box
++import androidx.compose.foundation.layout.Column
++import androidx.compose.foundation.layout.fillMaxWidth
++import androidx.compose.foundation.layout.padding
++import androidx.compose.material3.Button
++import androidx.compose.material3.ExperimentalMaterial3Api
++import androidx.compose.material3.MaterialTheme
++import androidx.compose.material3.Scaffold
++import androidx.compose.material3.Text
++import androidx.compose.material3.TextField
++import androidx.compose.material3.TopAppBar
++import androidx.compose.runtime.Composable
++import androidx.compose.runtime.getValue
++import androidx.compose.runtime.mutableStateOf
++import androidx.compose.runtime.remember
++import androidx.compose.runtime.setValue
++import androidx.compose.ui.Modifier
++import androidx.compose.ui.tooling.preview.Preview
++import androidx.compose.ui.unit.dp
++
++@OptIn(ExperimentalMaterial3Api::class)
++@Composable
++fun AgregarResena(novela: Novela, onResenaAgregada: (String) -> Unit) {
++    var reseña by remember { mutableStateOf("") }
++
++    Scaffold(
++        topBar = {
++            TopAppBar(
++                title = { Text(text = "Agregar Reseña") }
++            )
++        }
++    ) { paddingValues ->
++        Box(modifier = Modifier.padding(paddingValues)) {
++            Column(modifier = Modifier.padding(16.dp)) {
++                Text(text = "Reseña para: ${novela.titulo}", style = MaterialTheme.typography.titleMedium)
++                TextField(
++                    value = reseña,
++                    onValueChange = { reseña = it },
++                    label = { Text("Escribe tu reseña") },
++                    modifier = Modifier.fillMaxWidth()
++                )
++                Button(
++                    onClick = {
++                        if (reseña.isNotBlank()) {
++                            onResenaAgregada(reseña) // Llama la función para agregar reseña
++                        }
++                    },
++                    modifier = Modifier.padding(top = 16.dp)
++                ) {
++                    Text(text = "Agregar Reseña")
++                }
++            }
++        }
++    }
++}
++
++@Preview(showBackground = true)
++@Composable
++fun AgregarResenaPreview() {
++    // Crear un objeto de novela de ejemplo
++    val novelaEjemplo = Novela(
++        titulo = "Ejemplo de Novela",
++        autor = "Autor de Ejemplo",
++        anioPublicacion = 2023,
++        sinopsis = "Esta es una sinopsis de ejemplo para la novela.",
++        resenas = mutableListOf() // Inicializar con una lista vacía
++    )
++
++    // Llamar a la función AgregarResena con un lambda vacío para onResenaAgregada
++    AgregarResena(novela = novelaEjemplo) { resena ->
++    }
++}
+Index: app/src/main/java/com/example/feedback2/DetallesNovela.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/feedback2/DetallesNovela.kt b/app/src/main/java/com/example/feedback2/DetallesNovela.kt
+new file mode 100644
+--- /dev/null	(date 1728580295786)
++++ b/app/src/main/java/com/example/feedback2/DetallesNovela.kt	(date 1728580295786)
+@@ -0,0 +1,42 @@
++package com.example.feedback2
++
++import androidx.compose.foundation.layout.*
++import androidx.compose.material3.*
++import androidx.compose.runtime.Composable
++import androidx.compose.ui.Modifier
++import androidx.compose.ui.tooling.preview.Preview
++import androidx.compose.ui.unit.dp
++
++@Composable
++fun DetallesNovela(novela: Novela, onMarcarFavorita: (Novela) -> Unit, onVolver: () -> Unit) {
++    Column(modifier = Modifier.padding(16.dp)) {
++        Text(text = novela.titulo, style = MaterialTheme.typography.titleLarge)
++        Text(text = "Autor: ${novela.autor}")
++        Text(text = "Año: ${novela.anioPublicacion}")
++        Spacer(modifier = Modifier.height(8.dp))
++        Text(text = novela.sinopsis)
++        Spacer(modifier = Modifier.height(16.dp))
++
++        //Botón para marcar/desmarcar como favorita
++        Button(onClick = { onMarcarFavorita(novela) }) {
++            Text(if (novela.esFavorita) "Quitar de Favoritas" else "Marcar como Favorita")
++        }
++
++        Spacer(modifier = Modifier.height(16.dp))
++
++        //Botón para volver a la pantalla principal
++        Button(onClick = { onVolver() }) {
++            Text(text = "Volver a la pantalla principal")
++        }
++    }
++}
++
++@Preview(showBackground = true)
++@Composable
++fun PreviewDetallesNovela() {
++    DetallesNovela(
++        novela = Novela(titulo = "Novela ejemplo", autor = "autor ejemplo", anioPublicacion = 2023, sinopsis = "Esta es una sinopsis de ejemplo"),
++        onMarcarFavorita = {},
++        onVolver = {}
++    )
++}
+Index: app/src/main/java/com/example/feedback2/NovelaViewModel.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/feedback2/NovelaViewModel.kt b/app/src/main/java/com/example/feedback2/NovelaViewModel.kt
+new file mode 100644
+--- /dev/null	(date 1728580295749)
++++ b/app/src/main/java/com/example/feedback2/NovelaViewModel.kt	(date 1728580295749)
+@@ -0,0 +1,30 @@
++package com.example.feedback2
++
++import androidx.compose.runtime.mutableStateListOf
++import androidx.lifecycle.ViewModel
++
++class NovelaViewModel : ViewModel() {
++
++    //Lista de novelas en memoria
++    private val _novelas = mutableStateListOf<Novela>()
++    val novelas: List<Novela> get() = _novelas
++
++    fun agregarNovela(novela: Novela) {
++        _novelas.add(novela)
++    }
++
++    fun eliminarNovela(novela: Novela) {
++        _novelas.remove(novela)
++    }
++
++    fun marcarFavorita(novela: Novela) {
++        val index = _novelas.indexOf(novela)
++        if (index >= 0) {
++            _novelas[index] = _novelas[index].copy(esFavorita = !novela.esFavorita)
++        }
++    }
++
++    fun agregarResena(novela: Novela, resena: String) {
++        novela.resenas.add(resena)
++    }
++}
+\ No newline at end of file
+Index: app/src/main/java/com/example/feedback2/Novela.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/feedback2/Novela.kt b/app/src/main/java/com/example/feedback2/Novela.kt
+new file mode 100644
+--- /dev/null	(date 1728580295791)
++++ b/app/src/main/java/com/example/feedback2/Novela.kt	(date 1728580295791)
+@@ -0,0 +1,10 @@
++package com.example.feedback2
++
++data class Novela(
++    val titulo: String,
++    val autor: String,
++    val anioPublicacion: Int,
++    val sinopsis: String,
++    var esFavorita: Boolean = false,
++    val resenas: MutableList<String> = mutableListOf() // Lista para almacenar reseñas
++)
